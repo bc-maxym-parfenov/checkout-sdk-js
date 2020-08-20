@@ -27,7 +27,13 @@ ___
 
 ###  trackOrderComplete
 
-▸ **trackOrderComplete**(): *void*
+▸ **trackOrderComplete**(`features?`: Record‹string, boolean›): *void*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`features?` | Record‹string, boolean› |
 
 **Returns:** *void*
 
