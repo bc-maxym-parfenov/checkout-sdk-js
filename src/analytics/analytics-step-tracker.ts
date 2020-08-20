@@ -18,6 +18,7 @@ export interface StepTrackerConfig {
 export type AnalyticStepType = 'customer' | 'shipping' | 'billing' | 'payment';
 
 const ORDER_ITEMS_STORAGE_KEY = 'ORDER_ITEMS';
+// const MAX_PAYLOAD_SIZE = 1000;
 
 export enum AnalyticStepId {
     CUSTOMER = 1,
@@ -108,13 +109,13 @@ export default class AnalyticsStepTracker implements StepTracker {
 
         const {
             isComplete,
-            orderId,
-            orderAmount,
-            shippingCostTotal,
-            taxTotal,
-            discountAmount,
-            coupons,
-            lineItems,
+            // orderId,
+            // orderAmount,
+            // shippingCostTotal,
+            // taxTotal,
+            // discountAmount,
+            // coupons,
+            // lineItems,
             cartId,
         } = order;
 
@@ -127,18 +128,76 @@ export default class AnalyticsStepTracker implements StepTracker {
         if (extraItemsData === null) {
             return;
         }
+        // const gaPayload = this.getTrackingPayload({
+        //     orderId,
+        //     revenue: orderAmount,
+        //     shipping: shippingCostTotal,
+        //     tax: taxTotal,
+        //     discount: discountAmount,
+        //     coupons,
+        //     extraItemsData,
+        //     lineItems,
+        // });
 
-        this.analytics.track('Order Completed', this.getTrackingPayload({
-            orderId,
-            revenue: orderAmount,
-            shipping: shippingCostTotal,
-            tax: taxTotal,
-            discount: discountAmount,
-            coupons,
-            extraItemsData,
-            lineItems,
-        }));
+        // const GAPayload: GAOrderCompletedPayload  = this.getTrackingPayload({
+        //     orderId,
+        //     revenue: orderAmount,
+        //     shipping: shippingCostTotal,
+        //     tax: taxTotal,
+        //     discount: discountAmount,
+        //     coupons,
+        //     extraItemsData,
+        //     lineItems,
+        // });
+        // const payloadLength = this.analytics.serializeEventProperties(GAPayload).length;
+        // const eventName = 'Order Completed';
 
+        // if (payloadLength > MAX_PAYLOAD_SIZE) {
+        //     // const products = [...GAPayload.products];
+        //     // const product = products.unshift();
+        //     // this.analytics.track(eventName, {
+        //     //     ...GAPayload,
+        //     //     revenue: 0,
+        //     //     products: [products.unshift()],
+        //     // });
+        //     const lastProductIndex = GAPayload.products.length - 1;
+        //     const sumTo = (n: number) => n * (n + 1) / 2;
+
+        //     GAPayload.products.map((product, index) => {
+        //         const payload = {
+        //             ...GAPayload,
+        //             products: [product],
+        //             revenue: ((product.quantity * (product.price * 100)) + index) / 100, // +((() + +((index + 1 / 100).toPrecision(2))).toPrecision(1)),
+        //         };
+
+        //         if (lastProductIndex === index) {
+        //             payload.revenue = ((product.quantity * (product.price * 100)) - sumTo(lastProductIndex - 1)) / 100;
+        //         }
+
+        //         this.analytics.track(eventName, payload);
+        //     });
+
+        //     // this.splitByFieldAndSendEvent(
+        //     //     eventName,
+        //     //     'products',
+        //     //     {
+
+        //             // products: GAPayload.products,
+        //             // orderId: GAPayload.orderId || 0,
+        //             // coupon: GAPayload.coupon,
+        //             // revenue: 0,
+        //             // shipping: 0,
+        //             // tax: 0,
+        //             // discount: 0,
+        //     //     }
+        //     // );
+
+        //     return this.clearExtraItemData(cartId);
+        // }
+
+        // console.log({GAPayload});
+
+        // this.analytics.track(eventName, GAPayload);
         this.clearExtraItemData(cartId);
     }
 
@@ -261,7 +320,7 @@ export default class AnalyticsStepTracker implements StepTracker {
             currency: code,
             products: this.getProducts(extraItemsData, lineItems),
         };
-    }
+    } 
 
     private hasStepCompleted(stepId: AnalyticStepId): boolean {
         const shippingOption = this.getSelectedShippingOption();
@@ -437,6 +496,46 @@ export default class AnalyticsStepTracker implements StepTracker {
             ...giftCertificateItems,
         ];
     }
+    // private splitByFieldAndSendEvent(eventName: string, field: keyof GAOrderCompletedPayload, payload: Partial<GAOrderCompletedPayload>): void {
+    //     const size = this.analytics.serializeEventProperties(payload).length;
+    //     console.log({size});
+    //     if (size > MAX_PAYLOAD_SIZE) {
+    //         const selectedField = (payload[field] as []);
+    //         const payloadProductsLength = selectedField.length;
+    //         const payloadProductsMid = +(payloadProductsLength / 2).toFixed(0);
+
+    //         const leftProductsList = selectedField.slice(0, payloadProductsMid);
+    //         const rightProductsList = selectedField.slice(payloadProductsMid);
+
+    //         console.log({leftProductsList, rightProductsList});
+
+    //         if (Array.isArray(leftProductsList)) {
+    //             this.splitByFieldAndSendEvent(
+    //                 eventName,
+    //                 field,
+    //                 {
+    //                 ...payload,
+    //                 [field]: leftProductsList,
+    //             });
+    //         }
+
+    //         if (Array.isArray(rightProductsList)) {
+    //             this.splitByFieldAndSendEvent(
+    //                 eventName,
+    //                 field,
+    //                 {
+    //                 ...payload,
+    //                 [field]: rightProductsList,
+    //             });
+    //         }
+
+    //         return ;
+    //     }
+
+    //     console.log({size, eventName, payload});
+
+    //     this.analytics.track(eventName, payload);
+    // }
 }
 
 export interface AnalyticsProduct {
@@ -457,3 +556,15 @@ export interface ExtraItemsData {
         category: string;
     };
 }
+
+// interface GAOrderCompletedPayload {
+//     orderId: number | undefined;
+//     affiliation: string;
+//     revenue: number;
+//     shipping: number;
+//     tax: number;
+//     discount: number;
+//     coupon: string;
+//     currency: string;
+//     products: AnalyticsProduct[];
+// }
