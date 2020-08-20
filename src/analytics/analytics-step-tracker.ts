@@ -99,7 +99,7 @@ export default class AnalyticsStepTracker implements StepTracker {
         this._checkoutStarted = true;
     }
 
-    trackOrderComplete(): void {
+    trackOrderComplete(features?: Record<string, boolean>): void {
         const order = this.getOrder();
 
         if (!order) {
@@ -126,6 +126,42 @@ export default class AnalyticsStepTracker implements StepTracker {
 
         if (extraItemsData === null) {
             return;
+        }
+
+        const payload = this.getTrackingPayload({
+            orderId,
+            revenue: orderAmount,
+            shipping: shippingCostTotal,
+            tax: taxTotal,
+            discount: discountAmount,
+            coupons,
+            extraItemsData,
+            lineItems,
+        });
+
+        if (features?.['DATA-6891.missing_orders_within_GA']) {
+            this.analytics.hit('transaction', {
+                '&ti': payload.orderId,
+                '&ta': payload.affiliation,
+                '&tr': payload.revenue,
+                '&ts': payload.shipping,
+                '&tt': payload.tax,
+                '&tcc': payload.coupon,
+                '&cu': payload.currency,
+            });
+
+            payload.products.map(product => {
+                this.analytics.hit('item', {
+                    '&ti': payload.orderId,
+                    '&in': product.name,
+                    '&ic': product.sku,
+                    '&iv': `${product.category}, ${product.variant}`,
+                    '&ip': product.price,
+                    '&iq': product.quantity,
+                });
+            });
+
+            return this.clearExtraItemData(cartId);
         }
 
         this.analytics.track('Order Completed', this.getTrackingPayload({

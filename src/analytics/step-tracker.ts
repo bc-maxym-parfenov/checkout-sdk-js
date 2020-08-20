@@ -1,5 +1,5 @@
 export default interface StepTracker {
-    trackOrderComplete(): void;
+    trackOrderComplete(features?: Record<string, boolean>): void;
     trackCheckoutStarted(): void;
     trackStepViewed(step: string): void;
     trackStepCompleted(step: string): void;
