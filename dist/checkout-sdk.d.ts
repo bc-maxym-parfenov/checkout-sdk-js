@@ -4257,7 +4257,7 @@ declare interface StepStyles extends BlockElementStyles {
 }
 
 declare interface StepTracker {
-    trackOrderComplete(): void;
+    trackOrderComplete(features?: Record<string, boolean>): void;
     trackCheckoutStarted(): void;
     trackStepViewed(step: string): void;
     trackStepCompleted(step: string): void;
