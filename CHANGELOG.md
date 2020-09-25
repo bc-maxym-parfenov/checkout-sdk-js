@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.92.2-alpha.fb2b7b4a873fde6fb1366dc65e40bd0f47ca8446](https://github.com/bigcommerce/checkout-sdk-js/compare/v1.82.4...v1.92.2-alpha.fb2b7b4a873fde6fb1366dc65e40bd0f47ca8446) (2020-09-25)
+
+
+### Features
+
+* **checkout:** INT-2919 Add Unit Test ([1de848f](https://github.com/bigcommerce/checkout-sdk-js/commit/1de848f14f98d0ff9bdb3b68e814e927f028c732))
+* **checkout:** INT-2919 Add Unit test to script loader ([dddd1d1](https://github.com/bigcommerce/checkout-sdk-js/commit/dddd1d119a45e7babf665299a7631fcafd0864ad))
+* **checkout:** INT-2919 Create an strategy in order to use Bolt in Bigcommerce checkout ([f25c662](https://github.com/bigcommerce/checkout-sdk-js/commit/f25c662ef860f084133fddb13ae24767f659e54c))
+* **checkout:** INT-2919 Minor corrections ([4e1160d](https://github.com/bigcommerce/checkout-sdk-js/commit/4e1160db27a588e9bcae3925d4a78717b3419f05))
+* **checkout:** INT-2919 move changes to another strategy ([d09c299](https://github.com/bigcommerce/checkout-sdk-js/commit/d09c299d822ecf309b1722bfd9e46e46747a3db4))
+* **checkout:** INT-2919 Several fixes to mocks and indentation ([2570226](https://github.com/bigcommerce/checkout-sdk-js/commit/2570226f30e756ddd01e862a77556c183a84dc5d))
+* **payment:** CHECKOUT-4947 Add Braintree hosted form service as abstraction layer for interacting with Braintree API ([a764cd0](https://github.com/bigcommerce/checkout-sdk-js/commit/a764cd09da18fb0d07809337238f13a35786c0f4))
+* **payment:** CHECKOUT-4947 Add methods for loading and initializing Braintree hosted fields module ([fc87ee9](https://github.com/bigcommerce/checkout-sdk-js/commit/fc87ee96621483d8395d2d2e59234d6b5340cb72))
+* **payment:** CHECKOUT-4947 Inspect payment method object to determine whether hosted payment form is enabled for payment method ([5c49812](https://github.com/bigcommerce/checkout-sdk-js/commit/5c4981205f6469986c4e7f39b533d3c1ec8297a8))
+* **payment:** CHECKOUT-4947 Modify Braintree credit card strategy to use hosted form service when feature is enabled ([3847aeb](https://github.com/bigcommerce/checkout-sdk-js/commit/3847aebcd62ddab7334bf4bb4b7ef0efb8a1a7f3))
+* **payment:** INT-2532 Accept payments through StripeV3 using iDEAL & SEPA ([3fcb1cc](https://github.com/bigcommerce/checkout-sdk-js/commit/3fcb1cc61e78a7e298ee6c0014132b72a4b8581f))
+* **payment:** INT-2653 Accept payments through StripeV3 using Alipay ([997bd1d](https://github.com/bigcommerce/checkout-sdk-js/commit/997bd1d3838c6bb8c2a13e056aee2648ce6ec30b))
+* **payment:** INT-2801 Prepopulate ACH Billing Info ([84f1524](https://github.com/bigcommerce/checkout-sdk-js/commit/84f152494e779e47eea8f7f43122220b4571c824))
+* **payment:** INT-2907 Avoid returns duplicate vaulted instruments ([663194e](https://github.com/bigcommerce/checkout-sdk-js/commit/663194e0e427d07e43aaf226c57098b76d59f701))
+* **payment:** INT-3016 remove phone number parameter in request if field is empty in Stripev3 ([c0220de](https://github.com/bigcommerce/checkout-sdk-js/commit/c0220de393161fba75350531236d2aefab04040d))
+* **payment:** PAYMENTS-5513 add setAsDefaultInstrument feature during vaulting or vaulted payments ([#893](https://github.com/bigcommerce/checkout-sdk-js/issues/893)) ([055b7ee](https://github.com/bigcommerce/checkout-sdk-js/commit/055b7eea7be09ff09220bdcb599aec4e94f86cf8))
+* **payment:** PAYPAL-202 bump bigpay-client to 5.12 ([e1cebb6](https://github.com/bigcommerce/checkout-sdk-js/commit/e1cebb649b90eda7726c897e0a6949f50222463f))
+* **payment:** PAYPAL-539 Add validate params in script loader ([1bac153](https://github.com/bigcommerce/checkout-sdk-js/commit/1bac1535e865feba3ec80dae0aa6d3f026a55ed9))
+* **payment:** PAYPAL-539 MerchantId does not required for progressive onboarding ([ec88cf7](https://github.com/bigcommerce/checkout-sdk-js/commit/ec88cf76e3cd0245fc062355297ec457e5e1d7c1))
+* **payment:** PAYPAL-652 Add PPCP to SDK documentation ([83276b9](https://github.com/bigcommerce/checkout-sdk-js/commit/83276b916d829539ac5c3a5cb3770ca0ef218226))
+
+
+### Bug Fixes
+
+* **checkout:** DATA-6891 fix analytics missing transactions ([d609813](https://github.com/bigcommerce/checkout-sdk-js/commit/d609813e5607defb7c6b1053af7f21609885d4c6))
+* **DATA-6891:** fix analytics missing transactions ([fb2b7b4](https://github.com/bigcommerce/checkout-sdk-js/commit/fb2b7b4a873fde6fb1366dc65e40bd0f47ca8446))
+* **DATA-6891:** fix analytics missing transactions ([b1894a1](https://github.com/bigcommerce/checkout-sdk-js/commit/b1894a125141a10fd347151df2d6ae9a46a9f185))
+* **payment:** CHECKOUT-5089 Catch "permission denied" error when attempting to gather adjacent hosted inputs to support IE11 ([dc0f334](https://github.com/bigcommerce/checkout-sdk-js/commit/dc0f33484cad5193c3debab7cdb460736f41bfe1))
+* **payment:** INT-2043 Apply store credit on StripeV3 ([ac41ff9](https://github.com/bigcommerce/checkout-sdk-js/commit/ac41ff9515e70306c574e93b788435eec7a45d6d))
+* **payment:** INT-2907 Fix linter in instrument selector ([2d455f0](https://github.com/bigcommerce/checkout-sdk-js/commit/2d455f07b8d1f7f6d92d5daa2a241d777bf51d6d))
+* **payment:** INT-3010 Fix Zip store credit implementation ([37ffccf](https://github.com/bigcommerce/checkout-sdk-js/commit/37ffccf9ec63f3a85338d7d4b10a5fcdc08199fd))
+
+
+### Code Refactoring
+
+* **checkout:** CHECKOUT-4947 Remove unused key from settings object ([232a2cc](https://github.com/bigcommerce/checkout-sdk-js/commit/232a2cca5866861628e2af6ccba156d8a50ccdcc))
+* **payment:** INT-2922 Upgrade Adyen Component Library ([50e5dd7](https://github.com/bigcommerce/checkout-sdk-js/commit/50e5dd75fd86c8c923a20969417bbfd079be1651))
+* **payment:** INT-2995 Avoid setting up Affirm.js from string code ([b8b8f92](https://github.com/bigcommerce/checkout-sdk-js/commit/b8b8f92497379d646c8d6ce2a1d8147f3b2112d4))
+
 ### [1.92.1](https://github.com/bigcommerce/checkout-sdk-js/compare/v1.92.0...v1.92.1) (2020-08-18)
 
 
