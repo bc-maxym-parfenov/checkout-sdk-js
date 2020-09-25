@@ -139,7 +139,7 @@ export default class AnalyticsStepTracker implements StepTracker {
             lineItems,
         });
 
-        if (features?.['DATA-6891.missing_orders_within_GA']) {
+        if (this.analytics.hasPayloadLimit(payload) && features?.['DATA-6891.missing_orders_within_GA']) {
             this.analytics.hit('transaction', {
                 '&ti': payload.orderId,
                 '&ta': payload.affiliation,
@@ -164,16 +164,7 @@ export default class AnalyticsStepTracker implements StepTracker {
             return this.clearExtraItemData(cartId);
         }
 
-        this.analytics.track('Order Completed', this.getTrackingPayload({
-            orderId,
-            revenue: orderAmount,
-            shipping: shippingCostTotal,
-            tax: taxTotal,
-            discount: discountAmount,
-            coupons,
-            extraItemsData,
-            lineItems,
-        }));
+        this.analytics.track('Order Completed', payload);
 
         this.clearExtraItemData(cartId);
     }
