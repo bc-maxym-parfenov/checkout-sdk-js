@@ -155,7 +155,7 @@ export default class AnalyticsStepTracker implements StepTracker {
                     '&ti': payload.orderId,
                     '&in': product.name,
                     '&ic': product.sku,
-                    '&iv': `${product.category}, ${product.variant}`,
+                    '&iv': `${product.category}`,
                     '&ip': product.price,
                     '&iq': product.quantity,
                 });
