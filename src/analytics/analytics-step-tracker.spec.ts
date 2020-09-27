@@ -30,7 +30,12 @@ describe('AnalyticsStepTracker', () => {
     };
 
     beforeEach(() => {
-        analytics = { track: jest.fn() };
+        analytics = {
+            track: jest.fn(),
+            hit: jest.fn(),
+            hasPayloadLimit: jest.fn(),
+        };
+
         sessionStorage = {
             getItem: jest.fn(() => JSON.stringify(storedData)),
             setItem: jest.fn(),
